@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
-##CONNECT TO DB
+# CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -52,7 +52,7 @@ def admin_only(f):
     return decorated_function
 
 
-##CREATE USER TABLE
+# CREATE USER TABLE
 class User(UserMixin, db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
@@ -66,7 +66,7 @@ class User(UserMixin, db.Model):
 db.create_all()
 
 
-##CONFIGURE POST TABLES
+# CONFIGURE POST TABLES
 
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
@@ -81,10 +81,10 @@ class BlogPost(db.Model):
     comments = relationship("Comment", back_populates="parent_post")
 
 
-
 db.create_all()
 
-##CREATE USER REGISTRATION FORM
+
+# CREATE USER REGISTRATION FORM
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -98,8 +98,6 @@ class Comment(db.Model):
 
 
 db.create_all()
-
-
 
 
 @app.route('/')
